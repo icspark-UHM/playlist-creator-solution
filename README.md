@@ -3,6 +3,8 @@ _This project was created for ICSpark 2025_
 
 In this project, you'll create a Spotify-like music player using JavaScript arrays and objects. The HTML and CSS are already set up for you - you just need to make it work by completing the JavaScript code!
 
+![Playlist Creator Screenshot](/images/playlist-creator-1.png)
+
 ## Table of Contents
 
 - [Introduction](#introduction)
@@ -49,6 +51,7 @@ Find the ```addSong``` function and complete these steps:
    - Make sure none of the fields are empty
    - Show an alert is any field is missing
    - Use ```return``` to stop the function if there's an error
+   - ![Playlist Creator Screenshot](/images/playlist-creator-2.png)
 3. Create a new song
    - Use the ```Song``` constructor from Steo 1
    - Pass in the title, artist, and duration values
