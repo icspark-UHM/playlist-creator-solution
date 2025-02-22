@@ -5,106 +5,94 @@ In this project, you'll create a Spotify-like music player using JavaScript arra
 
 ![Playlist Creator Screenshot](/images/playlist-creator-1.png)
 
-## Table of Contents
+### 1. Create The Playlist Array
 
-- [Introduction](#introduction)
-- [Project Structure](#project-structure)
-- [Step-by-Step Guide](#step-by-step-guide)
-  - [1. Create the Song Constructor](#1-create-the-song-constructor)
-  - [2. Complete the addSong Function](#2-complete-the-addsong-function)
-  - [3. Complete the displayPlaylist Function](#3-complete-the-displayplaylist-function)
-- [Testing](#testing)
-- [Bonus](#bonus)
-- [Tips](#tips)
+We're making a website where our user can add songs to a playlist, so we'll need to have a place where we can store all the information about each song. An array is perfect for this!
 
-## Introduction
+✅ Create an array called `playlist` at the very start of your JavaScript code. It can be empty for now, but when users enter information into the website, we'll store it into this array.
 
-In this tutorial, you'll learn how to create a simple website with an HTML structure, styled with CSS, and interactivity added using JavaScript. By the end of this guide, you will have a basic understanding of how these three technologies work together to create a functional webpage.
+### 2. Add the addSong Function
 
-Start by cloning this repository.
+Now we need a function that will add songs to the playlist we just made. When we press the Add Song button on the website, it'll run this function, adding the song into the playlist array.
 
-## Step-by-Step Guide
+✅ Create a function called `addSong()`
 
-### 1. Create the Song Constructor
+This function needs to read what the user typed into each of the input boxes, so it can add them to the playlist. There are three things it needs to know:
+   - The song's title
+   - The song's artist
+   - The song's duration
 
-Find the ```Song``` constructor function in script.js and:
+The user is supposed to type this information into these boxes on the website:
 
-1. Add three parameters: ```title```, ```artist```. and ```duration```
-2. Inside the function, create three properties using ```this```:
-   - ```this.title = title```
-   - ```this.artist = artist```
-   - ```this.duration = duration```
-  
-Test:
+![inputBoxes](images/inputBoxes.png)
 
-Type ```let testSong = newSong("Test", "Artist", "3:00")``` into your console. This should create an object with those properties. 
+In the HTML, these boxes are called `input` elements, that allow the user to input things into them. Here's what they look like in the HTML:
 
-### 2. Complete the addSong Function
+```html
+<input type="text" id="songTitle" placeholder="Song title">
+<input type="text" id="artist" placeholder="Artist name">
+<input type="text" id="duration" placeholder="Duration (e.g., 3:45)">
+```
 
-Find the ```addSong``` function and complete these steps:
+If we want our `addSong()` function to read what's inside these input boxes, we need to use a command called `document.getElementById("id").value`. You'll learn more about what this command does later, but for now, we'll use it to take what's inside of the input boxes and store them into variables.
 
-1. Get the values that the user types in
-   - Use ```document.getElementById()``` to get each input field
-   - Get ```value``` from each input
-   - Store them in variables called ```title```, ```artist```, and ```duration```
-2. Check if the inputs are valid
-   - Make sure none of the fields are empty
-   - Show an alert is any field is missing
-   - Use ```return``` to stop the function if there's an error
-   - ![Playlist Creator Screenshot](/images/playlist-creator-2.png)
-3. Create a new song
-   - Use the ```Song``` constructor from Steo 1
-   - Pass in the title, artist, and duration values
-   - Store the new song in a variable
-4. Add to playlist
-   - Add your new song to the ```playlist``` array
-   - HINT: arrays have a ```push()``` method
-5. Update the display
-   - Call the ```displayPlaylist()``` function
-6. Clear the form
-   - Set each input's value back to an empty string
-   - Test by checking if the form clears after adding a song
+✅ Inside the `addSong()` function, create three variables: title, artist, and duration.
 
-### 3. Complete the displayPlaylist Function
+✅ Set each variable to `document.getElementById("id").value`. Replace the "id" with the id of the input element in the HTML. For example:
+```javaScript
+let title = document.getElementById("songTitle").value;
+```
 
-Find the ```displayPlaylist``` function and complete these steps: 
+✅ Now we should have three variables that should be equal to whatever the user types in the input boxes!
 
-1. Get the playlist element
-   - Find the HTML element with id ```playlist```
-   - Store it in a variable
-3. Clear the current display
-   - Remove all current songs from the view
-   - HINT: Setting innerHTML to "" will clear an element
-3. Loop through the ```playlist``` array
-   - For each song, creat a new div element
-   - Add the class "song-card" to the div
-   - Look at the HTML comment for the correct structure
-   - HINT: arrays have a forEach method or you can use a loop
-5. For each song, display:
-   - The song number (index + 1)
-   - The song title from your object
-   - The artist from your object
-   - The duration from your object
-7. Add each song card to the playlist
-   - Use appendChild to add each card
-   - Test by checking if songs appear in the list
+### 3. Create a Song Object
 
-## Testing:
-1. Add a song of your choice
-3. Song should appear in the list
-4. Add another song
-5. Number should increment
+Now that we have all the song information, we need to put it all together in one song before we store it into the `playlist` array. We'll put them together by creating a `Song` object!
 
-## BONUS:
-If you finish early (or want extra practice):
+✅ Create an object called Song with three properties, and set them to the three variables we made earlier:
+   - songTitle: title,
+   - songArtist: artist,
+   - songDuration: duration
 
-☑ Add a Delete Button to each song card, and remove the song from the array when clicked
+If you don't remember how to create an object, ask a mentor for help!
 
-☑ Add a Play icon to each song, and change the song card's color when "playing"
+Once we've put together our `Song` object that has all of the song's information, we can add it to the `playlist` array! We can do this using the `.push()` function.
 
-## Tips:
-- Check the TODO comments in script.js
-- Use console.log() to __debug__:
-  - console.log(song) after creating a new song
-  - console.log(playlist) after adding a song
-- Ask your mentor for help! :)
+✅ Add the new `Song` object to the `playlist` array by doing `playlist.push(Song);`
+
+### 4. Test It!
+
+Included inside our JavaScript code is a premade function called `displayPlaylist()`, which looks through the `playlist` array and adds it to the HTML. We'll run this function at the end of our `addSong()` function to test our results.
+
+✅ At the end of the `addSong()` function, call the `displayPlaylist()` function!
+
+✅ Try testing out your website!
+
+![Playlist Creator Screenshot](/images/playlist-creator-1.png)
+
+It's looking pretty great, so let's add a few finishing touches to perfect our website!
+
+### 5. Upgrade Our Website
+
+One thing we can do to make our website better is to clear each of the input boxes whenver the user presses the Add Song button. We'll use `document.getElementById("id").value` again, but instead of storing it in a variable, we'll just set it equal to emptyness.
+
+✅ At the end of the `addSong()` function, clear the three input boxes by setting them equal to `''`. For example:
+```javaScript
+document.getElementById('songTitle').value = '';
+```
+
+✅ Test your website! Pressing the Add Song button should now clear the three boxes!
+
+Another upgrade we can do is to prevent the song from being added if any of the boxes aren't filled. As of right now, you can add empty songs to the playlist, and we want to prevent that.
+
+✅ On a line after creating the three song info variables, but on a line before pushing the song to the `playlist` array, use an `if` statement to check if either title, artist, or duration is equal to `''`, emptyness.
+
+✅ If one of the inputs are empty, use the `return` command to stop the `addSong()` function from continuing on. 
+
+✅ Add an `alert()` telling the user to "Fill in all the boxes" before stopping the function. 
+
+✅ Test it by trying to add a song with an empty box. It should not add it, and alert the user to fill every box!
+
+### Conclusion
+
+Congrats! You've finished your playlist website!
